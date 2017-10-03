@@ -1,5 +1,12 @@
 <?php
+
+class admin
+{
+
 	
+
+function createconn()
+{	
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -8,28 +15,25 @@
 
 	$conn = new mysqli($servername,$username,$password);
 
+	}
 	
 	 //Create database
 
-	$sql = "CREATE DATABASE C0705705_Damini";
-	/*if ($conn->query($sql)===TRUE)
+	function createDB()
 	{
-		echo "Database created successfully. <br>";
+		$sql = "CREATE DATABASE C0705705_Damini";
+
 	}
-	else
-	{
-		echo "Error creating database:" . $conn->error;
-	}*/
+
+	
 	
 
 
-
+function createTB()
+{
 
 $sql = "Use C0705705_Damini";
-/*if ($conn->query($sql)=== TRUE)
-{
-*/
-	
+
 
 $sql = "CREATE TABLE Employee_master("
 ."empId int(4) AUTO_INCREMENT primary kEY,"
@@ -44,22 +48,11 @@ $sql = "CREATE TABLE Employee_master("
 ."website varchar(10),"
 ."joiningdate date,"
 ."annualbasicpay decimal(6,2))";
-
-/*if ($conn->query($sql)===TRUE)
-	{
-		echo "Table created successfully. <br>";
-	}
-	else
-	{
-		echo "Error creating Table :" . $conn->error;
-	}
-
 }
-else
+
+function insert()
 {
-	echo "Error connecting database:" . $conn->error. "<br>";
-}
-*/
+
 $sql = "INSERT INTO Employee_master (empName,gender,bod,address,city,province,postalcode,email,website,joiningdate,annualbasicpay) VALUES ('Damini','Female','24/11/1993','DonMillsRoad','Toronto','Ontario','M2J3C3','daminivakani10@gmail.com','www.gmail.com','01/01/2017','$10000');";
 $sql .= "INSERT INTO Employee_master (empName,gender,bod,address,city,province,postalcode,email,website,joiningdate,annualbasicpay) VALUES ('Tushar','Male','06/07/1993','DonMillsRoad','Toronto','Ontario','M2J3C3','trdholakiya@gmail.com','www.gmail.com','02/02/2017','$15000');";
 $sql .=  "INSERT INTO Employee_master (empName,gender,bod,address,city,province,postalcode,email,website,joiningdate,annualbasicpay) VALUES ('Chaitali','Female','24/09/1992','Markham','Toronto','Ontario','M2J3C5','chaitalip@gmail.com','www.facebook.com','03/03/2017','$10000');";
@@ -71,10 +64,10 @@ $sql .=  "INSERT INTO Employee_master (empName,gender,bod,address,city,province,
 $sql .=  "INSERT INTO Employee_master (empName,gender,bod,address,city,province,postalcode,email,website,joiningdate,annualbasicpay) VALUES ('Dutt','Male','10/11/1991','Brmtn','Bramton','Ontario','M2J3N3','patel@gmail.com','www.localhost.com','09/09/2017','$25000');";
 $sql .=  "INSERT INTO Employee_master (empName,gender,bod,address,city,province,postalcode,email,website,joiningdate,annualbasicpay) VALUES ('Nimmi','Female','01/05/1995','Sheppard','Toronto','Ontario','M2K2C3','nimmiJ@gmail.com','www.w3c.com','10/10/2017','$9000');";
 
+}
+/*
 
-
-
-/*if ($conn->multi_query($sql)===TRUE)
+if ($conn->multi_query($sql)===TRUE)
 	{
 		$last_id = $conn->insert_id;
 		echo "New record inserted successfully. <br>";
@@ -83,14 +76,30 @@ $sql .=  "INSERT INTO Employee_master (empName,gender,bod,address,city,province,
 	{
 		echo "Error creating record :" . $conn->error;
 	}
-*/
+
 	
+	$sql="USE C0705705_Damini";
 
 
+if ($conn->query($sql)===TRUE)
+	{
+		echo "Table created successfully. <br>";
+	}
+	else
+	{
+		echo "Error creating Table :" . $conn->error;
+	}
 
+*/
 
-$sql = "SELECT * FROM Employee_master;";
+	function select()
+	{
+
+$sql = "SELECT * FROM Employee_master";
 $result = $conn->query($sql);
+
+$totalRecords=mysqli_num_rows($result);
+echo "Total records : " . $totalRecords . "<br>";
 
 	echo "<br> Total Records Fetched : " . mysqli_num_rows($result) . ". </br>";
 	if(mysqli_num_rows($result)>0)
@@ -114,7 +123,13 @@ $result = $conn->query($sql);
 		}
 		echo "</table>";
 	}
+}
+
+function update()
+{
 
 	
+}
 
+}
 ?>
